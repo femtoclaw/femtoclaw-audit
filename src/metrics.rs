@@ -1,7 +1,5 @@
 //! Metrics System.
 
-use metrics::{Counter, Gauge, Histogram};
-
 pub struct Metrics;
 
 impl Metrics {
@@ -9,15 +7,15 @@ impl Metrics {
         Self
     }
 
-    pub fn increment_counter(&self, name: &str) {
+    pub fn increment_counter(&self, name: &'static str) {
         metrics::counter!(name).increment(1);
     }
 
-    pub fn record_histogram(&self, name: &str, value: f64) {
+    pub fn record_histogram(&self, name: &'static str, value: f64) {
         metrics::histogram!(name).record(value);
     }
 
-    pub fn set_gauge(&self, name: &str, value: f64) {
+    pub fn set_gauge(&self, name: &'static str, value: f64) {
         metrics::gauge!(name).set(value);
     }
 }
